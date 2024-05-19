@@ -7,8 +7,9 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    border-radius: 10px;
+    background-color: #e0e0e0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
 .login h1 {
@@ -38,13 +39,13 @@
 }
 
 .shape {
-    position: fixed;
+    position: absolute;
     background-color: #4285f4;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 14rem;
     height: 14rem;
     margin: 0;
-    padding: 0;
+
 }
 
 .top-left {
@@ -58,29 +59,19 @@
 .bottom-right {
     border-top-left-radius: 100%;
     border-bottom-left-radius: 100%;
-    bottom: -10rem !important;
+    bottom: -10rem;
     right: -2.5rem;
 }
 
-@media (min-width: 768px) {
-    .shape {
-        width: 24rem;
-        /* md:w-96 */
-        height: 24rem;
-        /* md:h-96 */
-    }
+@media (max-width: 768px) {
 
     .top-left {
         top: -10rem;
-        /* -top-40 */
         left: -2.5rem;
-        /* -left-10 */
     }
 
     .bottom-right {
-        bottom: -2.5rem;
-        /* Adjusted value to stay within the viewport */
+        bottom: -10rem;
         right: -2.5rem;
-        /* Adjusted value */
     }
 }
