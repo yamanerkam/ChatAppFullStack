@@ -1,0 +1,21 @@
+.messageBox {
+    background-color: #4b5563;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.messageBox input {
+    background-color: #4b5563;
+    border: 0;
+    color: white;
+}
+
+.messageBox input::placeholder {
+    color: white;
+}

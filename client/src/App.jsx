@@ -5,6 +5,7 @@ import Login from './pages/Login/Login';
 import ChatRoom from './pages/ChatRooms/ChatRoom';
 import NotFound from './pages/NotFound/NotFound';
 import Navbar from './components/Navbar/Navbar';
+import Room from './pages/Room/Room';
 
 function App() {
   const location = useLocation();
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/chatrooms" element={<ChatRoom />} />
+        <Route path="/room/:id" element={<Room />} />
         <Route path="*" element={<NotFound />} />
 
       </Routes>
