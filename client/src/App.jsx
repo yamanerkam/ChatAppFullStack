@@ -6,6 +6,8 @@ import ChatRoom from './pages/ChatRooms/ChatRoom';
 import NotFound from './pages/NotFound/NotFound';
 import Navbar from './components/Navbar/Navbar';
 import Room from './pages/Room/Room';
+import PublicRoutes from './routes/PublicRoutes';
+import ProtectedRoutes from './routes/ProtectedRoutes';
 
 function App() {
   const location = useLocation();
@@ -16,10 +18,16 @@ function App() {
 
       {shouldShowNavbar && <Navbar />}
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/chatrooms" element={<ChatRoom />} />
-        <Route path="/room/:id" element={<Room />} />
-        <Route path="*" element={<NotFound />} />
+
+        <Route element={<PublicRoutes />}>
+          <Route path="/" element={<Login />} />
+        </Route>
+
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/chatrooms" element={<ChatRoom />} />
+          <Route path="/room/:id" element={<Room />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
 
       </Routes>
 

@@ -5,8 +5,10 @@ import AuthProvider from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
+
     const navigate = useNavigate()
     const { user, signOutUser } = useContext(AuthProvider)
+
     console.log(user)
     function signOut() {
         signOutUser()
