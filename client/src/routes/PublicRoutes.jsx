@@ -3,8 +3,7 @@ import React, { useContext } from "react";
 import AuthProvider from '../context/AuthContext';
 
 const PublicRoutes = () => {
-    const { user, isAuthenticated } = useContext(AuthProvider)
-    console.log(user)
+    const { isAuthenticated } = useContext(AuthProvider)
 
     return (
         isAuthenticated ? <Navigate to='/chatrooms' /> : <Outlet />

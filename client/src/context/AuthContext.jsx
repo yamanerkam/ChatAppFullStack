@@ -6,7 +6,7 @@ import { signInWithPopup, signOut } from 'firebase/auth';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({});
 
     const [isAuthenticated, setIsAuthenticated] = useState(
         () => localStorage.getItem('user') === 'true' || false);
