@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Room.css'
 import { useParams } from "react-router-dom";
 import { io } from 'socket.io-client';
 import { FaPlus } from "react-icons/fa";
+import AuthContext from '../../context/AuthContext';
 const socket = io('http://192.168.1.3:3001', { transports: ['websocket'], jsonp: false, forceNew: true, })
 
 
-
 export default function Room() {
-
+    const { user } = useContext(AuthContext)
+    const userName = user.displayName
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
 
@@ -16,10 +17,11 @@ export default function Room() {
     const handleClick = (e) => {
 
         e.preventDefault()
-        const mes = { body: message, from: socket.id }
+        const mes = { body: message, from: socket.id, userName }
         socket.emit('sendMessage', mes, id)
         setMessages(state => [mes, ...state])
         console.log(messages)
+        setMessage('')
 
     }
 
@@ -45,8 +47,9 @@ export default function Room() {
             <ul className='list'>
                 {messages && messages.map((msg, index) => (
                     <li key={index}>
-                        <strong>{msg.from.substring(0, 4)}:
+                        <strong>{msg.from.substring(0, 4)} {msg.userName} :
                         </strong>
+                        {' '}
                         {msg.body}
 
                     </li>
