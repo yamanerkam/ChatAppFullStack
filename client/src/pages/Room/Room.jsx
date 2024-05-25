@@ -63,6 +63,7 @@ export default function Room() {
 
                 <input
                     value={message}
+                    required
                     onChange={((e) => setMessage(e.target.value))}
                     placeholder='Type a message...'
                     type="text" />
