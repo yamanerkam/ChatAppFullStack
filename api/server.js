@@ -19,16 +19,25 @@ const io = new Server(server, {
 io.on('connection', (socket) => {
     console.log(`User ${socket.id} connected!`)
 
-    // room
+    socket.on('joinRoom', function (room) {
+        socket.join(room)
+        console.log(`User ${socket.id} connected to room ${room}!`)
 
-    // message
+    })
 
-    // disconnect
+    socket.on('sendMessage', (body, room) => {
+        console.log(body, room)
+        socket.to(room).emit('sendMessage', body)
+    })
+
+    socket.on('disconnect', () => {
+        console.log('Client disconnected!')
+    })
 
 
 })
 
 
-server.listen(3000, '0.0.0.0', () => {
+server.listen(3001, '0.0.0.0', () => {
     console.log("SERVER IS RUNNING");
 });
