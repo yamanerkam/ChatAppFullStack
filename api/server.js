@@ -1,9 +1,11 @@
 const express = require('express')
 const http = require('http')
 const app = express()
-
 const { Server } = require('socket.io')
 const cors = require('cors')
+
+const mongoose = require('mongoose')
+const Message = require('./models/Message'); // Import the Message model
 
 app.use(cors())
 const server = http.createServer(app)
@@ -15,6 +17,23 @@ const io = new Server(server, {
         credentials: true,
     },
 })
+
+
+const uri = "mongodb+srv://erkamyaman35:42EZRJMfaBv8bOEa@chatapp.leqywva.mongodb.net/?retryWrites=true&w=majority&appName=chatApp";
+
+// Connect to MongoDB using Mongoose
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+    console.log('Connected to MongoDB Atlas');
+});
+
+
 
 io.on('connection', (socket) => {
     console.log(`User ${socket.id} connected!`)
@@ -30,7 +49,11 @@ io.on('connection', (socket) => {
         console.log(`User ${socket.id} left room ${room}!`);
     });
 
-    socket.on('sendMessage', (body, room) => {
+    socket.on('sendMessage', async (body, room) => {
+
+        const msg = body.body
+        const message = new Message({ msg, room });
+        await message.save(); // Save the message to MongoDB
         console.log(body, room)
         socket.to(room).emit('sendMessage', body)
     })
