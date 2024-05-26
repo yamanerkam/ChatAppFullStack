@@ -42,7 +42,13 @@ io.on('connection', (socket) => {
     socket.on('joinRoom', function (room) {
         socket.join(room)
         console.log(`User ${socket.id} connected to room ${room}!`)
+    })
 
+    socket.on('createRoom', async (room) => {
+        const name = room.name
+        const ID = room.ID
+        const roomSaved = new Room({ name, ID })
+        await roomSaved.save()
     })
 
     socket.on('leaveRoom', (room) => {
@@ -56,7 +62,7 @@ io.on('connection', (socket) => {
         const userUID = body.userUID
         const userName = body.userName
         const message = new Message({ msg, room, userUID, userName });
-        await message.save(); // Save the message to MongoDB
+        await message.save();
         console.log(body, room)
         socket.to(room).emit('sendMessage', body)
     })

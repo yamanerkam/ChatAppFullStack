@@ -3,6 +3,8 @@ import './ChatRoom.css'
 import ChatCard from '../../components/ChatCard/ChatCard'
 import { FaPlus } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import { io } from 'socket.io-client';
+const socket = io('http://192.168.1.3:3001', { transports: ['websocket'], jsonp: false, forceNew: true, })
 
 export default function () {
     const [rooms, setRooms] = useState([])
@@ -16,6 +18,7 @@ export default function () {
             name: newRoomName,
             ID: '43463654635'
         }
+        socket.emit('createRoom', newRoom)
         setRooms(state => [newRoom, ...state])
         setNewRoomName('')
         console.log(rooms)
