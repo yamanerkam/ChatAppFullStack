@@ -25,6 +25,11 @@ io.on('connection', (socket) => {
 
     })
 
+    socket.on('leaveRoom', (room) => {
+        socket.leave(room);
+        console.log(`User ${socket.id} left room ${room}!`);
+    });
+
     socket.on('sendMessage', (body, room) => {
         console.log(body, room)
         socket.to(room).emit('sendMessage', body)

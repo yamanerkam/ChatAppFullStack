@@ -29,6 +29,7 @@ export default function Room() {
         socket.emit('joinRoom', id);
         socket.on('sendMessage', receiveMessage)
         return () => {
+            socket.emit('leaveRoom', id);
             socket.off('sendMessage', receiveMessage)
         }
     }, [id])

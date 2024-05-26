@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import './ChatRoom.css'
 import ChatCard from '../../components/ChatCard/ChatCard'
 import { FaPlus } from "react-icons/fa";
-
+import { useNavigate } from 'react-router-dom';
 
 export default function () {
     const [rooms, setRooms] = useState([])
     const [newRoomName, setNewRoomName] = useState('')
+    const navigate = useNavigate()
 
     function handleClick(e) {
         e.preventDefault()
@@ -15,7 +16,7 @@ export default function () {
             name: newRoomName,
             ID: '43463654635'
         }
-        setRooms(state => [newRoom, ...rooms])
+        setRooms(state => [newRoom, ...state])
         setNewRoomName('')
         console.log(rooms)
     }
@@ -42,10 +43,12 @@ export default function () {
 
 
             <div className='cards'>
+                <ChatCard ID={'123'} name={'kam'}></ChatCard>
+                <ChatCard ID={'456'} name={'parker'}></ChatCard>
                 {rooms && rooms.map((room, index) => (
-                    <ChatCard key={index} name={room.name} ID={room.ID}></ChatCard>
+                    <ChatCard onClick={((e) => navigate(`/room/${room.ID}`))} key={index} name={room.name} ID={room.ID}></ChatCard>
                 ))}
             </div>
-        </div>
+        </div >
     )
 }

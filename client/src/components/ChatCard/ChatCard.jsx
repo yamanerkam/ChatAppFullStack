@@ -9,7 +9,7 @@ export default function ChatCard(props) {
         <div className='chat-card'>
             <h1> {props.ID}</h1 >
             <h1>{props.name}</h1>
-            <button onClick={((e) => navigate('/room/01'))} className='join-button'>Join</button>
+            <button onClick={((e) => navigate(`/room/${props.ID}`))} className='join-button'>Join</button>
         </div >
     )
 }
