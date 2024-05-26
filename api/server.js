@@ -5,7 +5,8 @@ const { Server } = require('socket.io')
 const cors = require('cors')
 
 const mongoose = require('mongoose')
-const Message = require('./models/Message'); // Import the Message model
+const Message = require('./models/Message');
+const Room = require('./models/Room')
 
 app.use(cors())
 const server = http.createServer(app)
