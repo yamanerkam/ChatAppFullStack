@@ -19,7 +19,7 @@ const io = new Server(server, {
 })
 
 
-const uri = "mongodb+srv://erkamyaman35:42EZRJMfaBv8bOEa@chatapp.leqywva.mongodb.net/?retryWrites=true&w=majority&appName=chatApp";
+const uri = "mongodb+srv://erkamyaman35:42EZRJMfaBv8bOEa@chatapp.leqywva.mongodb.net/chatapp?retryWrites=true&w=majority&appName=chatApp";
 
 // Connect to MongoDB using Mongoose
 mongoose.connect(uri, {
@@ -52,7 +52,9 @@ io.on('connection', (socket) => {
     socket.on('sendMessage', async (body, room) => {
 
         const msg = body.body
-        const message = new Message({ msg, room });
+        const userUID = body.userUID
+        const userName = body.userName
+        const message = new Message({ msg, room, userUID, userName });
         await message.save(); // Save the message to MongoDB
         console.log(body, room)
         socket.to(room).emit('sendMessage', body)

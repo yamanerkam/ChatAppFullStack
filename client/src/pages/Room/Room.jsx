@@ -10,6 +10,7 @@ const socket = io('http://192.168.1.3:3001', { transports: ['websocket'], jsonp:
 export default function Room() {
     const { user } = useContext(AuthContext)
     const userName = user.displayName
+    const userUID = user.uid
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
 
@@ -17,7 +18,7 @@ export default function Room() {
     const handleClick = (e) => {
 
         e.preventDefault()
-        const mes = { body: message, from: socket.id, userName }
+        const mes = { body: message, from: socket.id, userName, userUID }
         socket.emit('sendMessage', mes, id)
         setMessages(state => [mes, ...state])
         console.log(messages)
