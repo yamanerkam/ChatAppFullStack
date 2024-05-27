@@ -36,6 +36,19 @@ db.once('open', () => {
 
 
 
+app.get('/rooms', async (req, res) => {
+    try {
+        const rooms = await Room.find();
+        res.json(rooms)
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+})
+
+
+
+
 io.on('connection', (socket) => {
     console.log(`User ${socket.id} connected!`)
 
