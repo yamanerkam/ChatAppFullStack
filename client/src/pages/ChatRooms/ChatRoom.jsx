@@ -32,8 +32,7 @@ export default function () {
         e.preventDefault()
         console.log(newRoomName)
         const newRoom = {
-            name: newRoomName,
-            ID: '43463654635'
+            name: newRoomName
         }
         socket.emit('createRoom', newRoom)
         setRooms(state => [newRoom, ...state])
@@ -66,7 +65,7 @@ export default function () {
                 <ChatCard ID={'123'} name={'kam'}></ChatCard>
                 <ChatCard ID={'456'} name={'parker'}></ChatCard>
                 {rooms && rooms.map((room, index) => (
-                    <ChatCard onClick={((e) => navigate(`/room/${room.ID}`))} key={index} name={room.name} ID={room.ID}></ChatCard>
+                    <ChatCard key={index} name={room.name} ID={room._id}></ChatCard>
                 ))}
             </div>
         </div >
