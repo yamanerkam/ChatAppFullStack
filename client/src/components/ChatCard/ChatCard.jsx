@@ -7,7 +7,6 @@ export default function ChatCard(props) {
     const navigate = useNavigate()
     return (
         <div className='chat-card'>
-            <h1> {props.ID}</h1 >
             <h1>{props.name}</h1>
             <button onClick={((e) => navigate(`/room/${props.ID}`))} className='join-button'>Join</button>
         </div >
