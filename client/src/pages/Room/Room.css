@@ -44,5 +44,21 @@
 }
 
 .list {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
     list-style: none;
+}
+
+.message {
+    border-radius: 20px;
+}
+
+.my-message {
+    background-color: #3367d6;
+}
+
+.other-message {
+    background-color: brown;
 }
