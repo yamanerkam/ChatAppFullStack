@@ -1,6 +1,5 @@
-/* Container for the message input box */
 .messageBox {
-    background-color: #4b5563;
+    background-color: #1f2937;
     height: 60px;
     display: flex;
     flex-direction: row;
@@ -9,15 +8,16 @@
     position: absolute;
     bottom: 0;
     width: 100%;
+    padding: 0 10px;
 }
 
-/* Style for the input within the message box */
 .messageBox input {
-    background-color: #4b5563;
+    background-color: #374151;
     border: 0;
     width: 50%;
     color: white;
     font-size: 1em;
+    padding: 10px;
 }
 
 .messageBox input:focus {
@@ -25,12 +25,11 @@
 }
 
 .messageBox input::placeholder {
-    color: white;
+    color: #9ca3af;
 }
 
-/* Button to add a message */
 .plus-btn {
-    background-color: #4285f4;
+    background-color: #10b981;
     color: white;
     display: flex;
     justify-content: center;
@@ -40,35 +39,37 @@
     height: 40px;
     border-radius: 50%;
     margin-left: 10px;
-    /* Add spacing between the input and the button */
+    cursor: pointer;
 }
 
 .plus-btn:hover {
-    background-color: #3367d6;
+    background-color: #059669;
 }
 
-/* List of messages */
 .list {
     color: white;
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 10px;
     list-style: none;
     padding: 10px;
+    margin-bottom: 70px;
 }
 
 .message {
     border-radius: 20px;
     padding: 10px;
     max-width: 80%;
+    word-wrap: break-word;
+    color: white;
 }
 
 .my-message {
-    background-color: #3367d6;
+    background-color: #3b82f6;
     align-self: flex-end;
 }
 
 .other-message {
-    background-color: brown;
+    background-color: #ef4444;
     align-self: flex-start;
 }
