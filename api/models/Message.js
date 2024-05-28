@@ -9,6 +9,6 @@ const messageSchema = new mongoose.Schema({
 
 })
 
-const Message = mongoose.model('Message', messageSchema, 'messagesSocket.io',)
+const Message = mongoose.model('Message', messageSchema, 'messagesSocket.ioNew',)
 
 module.exports = Message;

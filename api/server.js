@@ -50,7 +50,7 @@ app.get('/messages/:id', async (req, res) => {
     const id = req.params.id
 
     try {
-        const messages = await Message.findById(id);
+        const messages = await Message.find({ room: id });
         res.json(messages)
     }
     catch (err) {

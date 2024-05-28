@@ -6,6 +6,6 @@ const roomSchema = new mongoose.Schema({
     timestamp: { type: Date, default: Date.now }
 })
 
-const Room = mongoose.model('Room', roomSchema, 'rooms')
+const Room = mongoose.model('Room', roomSchema, 'roomsNew')
 
 module.exports = Room;
