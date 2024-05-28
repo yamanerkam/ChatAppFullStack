@@ -62,8 +62,12 @@ export default function Room() {
 
             {id} room
             <ul className='list'>
+
+
+
+
                 {messages && messages.map((msg, index) => (
-                    <li key={index}>
+                    <li className={`message ${msg.userUID === user.uid ? 'my-message' : 'other-message'}`} key={index}>
                         <strong> {msg.userName} :
                         </strong>
                         {' '}
