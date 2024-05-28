@@ -84,7 +84,7 @@ io.on('connection', (socket) => {
 
     socket.on('sendMessage', async (body, room) => {
 
-        const msg = body.body
+        const msg = body.msg
         const userUID = body.userUID
         const userName = body.userName
         const message = new Message({ msg, room, userUID, userName });
