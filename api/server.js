@@ -46,6 +46,17 @@ app.get('/rooms', async (req, res) => {
     }
 })
 
+app.get('/messages', async (req, res) => {
+    try {
+        const messages = await Message.find();
+        res.json(messages)
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message });
+
+    }
+})
+
 
 
 
