@@ -62,10 +62,6 @@ export default function Room() {
 
             {id} room
             <ul className='list'>
-
-
-
-
                 {messages && messages.map((msg, index) => (
                     <li className={`message ${msg.userUID === user.uid ? 'my-message' : 'other-message'}`} key={index}>
                         <strong> {msg.userName} :
@@ -76,9 +72,6 @@ export default function Room() {
                     </li>
                 ))}
             </ul>
-
-
-
 
             <form className='messageBox' onSubmit={handleClick}>
 
