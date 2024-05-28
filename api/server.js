@@ -36,10 +36,9 @@ db.once('open', () => {
 
 
 
-app.get('/rooms/:id', async (req, res) => {
-    const id = req.params.id
+app.get('/rooms', async (req, res) => {
     try {
-        const rooms = await Room.findById(id);
+        const rooms = await Room.find();
         res.json(rooms)
     }
     catch (err) {
@@ -47,9 +46,11 @@ app.get('/rooms/:id', async (req, res) => {
     }
 })
 
-app.get('/messages', async (req, res) => {
+app.get('/messages/:id', async (req, res) => {
+    const id = req.params.id
+
     try {
-        const messages = await Message.find();
+        const messages = await Message.findById(id);
         res.json(messages)
     }
     catch (err) {

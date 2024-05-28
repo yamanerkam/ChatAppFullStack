@@ -8,15 +8,16 @@ const socket = io('http://192.168.1.3:3001', { transports: ['websocket'], jsonp:
 import axios from 'axios'
 
 export default function Room() {
+    const { id } = useParams()
     const { user } = useContext(AuthContext)
     const userName = user.displayName
     const userUID = user.uid
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
     useEffect(() => {
-        const fetchMessages = async () => {
+        const fetchMessages = async (id) => {
             try {
-                const messagesDB = await axios.get('http://192.168.1.3:3001/messages')
+                const messagesDB = await axios.get(`http://192.168.1.3:3001/messages/${id}`)
                 console.log(messagesDB)
             } catch (err) {
                 console.log(err)
@@ -24,11 +25,10 @@ export default function Room() {
             }
 
         }
-        fetchMessages()
+        fetchMessages(id)
     }, [])
 
 
-    const { id } = useParams()
     const handleClick = (e) => {
 
         e.preventDefault()
