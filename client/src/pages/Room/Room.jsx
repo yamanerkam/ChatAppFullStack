@@ -18,7 +18,8 @@ export default function Room() {
         const fetchMessages = async (id) => {
             try {
                 const messagesDB = await axios.get(`http://192.168.1.3:3001/messages/${id}`)
-                console.log(messagesDB)
+                console.log(messagesDB.data)
+                setMessages(messagesDB.data)
             } catch (err) {
                 console.log(err)
 
@@ -63,10 +64,10 @@ export default function Room() {
             <ul className='list'>
                 {messages && messages.map((msg, index) => (
                     <li key={index}>
-                        <strong>{msg.from.substring(0, 4)} {msg.userName} :
+                        <strong> {msg.userName} :
                         </strong>
                         {' '}
-                        {msg.body}
+                        {msg.msg}
 
                     </li>
                 ))}
