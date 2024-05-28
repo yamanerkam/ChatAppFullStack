@@ -22,7 +22,6 @@ const io = new Server(server, {
 
 const uri = "mongodb+srv://erkamyaman35:42EZRJMfaBv8bOEa@chatapp.leqywva.mongodb.net/chatapp?retryWrites=true&w=majority&appName=chatApp";
 
-// Connect to MongoDB using Mongoose
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
