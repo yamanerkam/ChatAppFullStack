@@ -17,7 +17,7 @@ export default function () {
 
         const fetchRooms = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/rooms')
+                const response = await axios.get('http://192.168.1.3:3001/rooms')
                 console.log(response.data)
                 setRooms(response.data)
             } catch (error) {

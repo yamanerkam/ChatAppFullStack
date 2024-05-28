@@ -36,9 +36,10 @@ db.once('open', () => {
 
 
 
-app.get('/rooms', async (req, res) => {
+app.get('/rooms/:id', async (req, res) => {
+    const id = req.params.id
     try {
-        const rooms = await Room.find();
+        const rooms = await Room.findById(id);
         res.json(rooms)
     }
     catch (err) {

@@ -5,7 +5,7 @@ import { io } from 'socket.io-client';
 import { FaPlus } from "react-icons/fa";
 import AuthContext from '../../context/AuthContext';
 const socket = io('http://192.168.1.3:3001', { transports: ['websocket'], jsonp: false, forceNew: true, })
-
+import axios from 'axios'
 
 export default function Room() {
     const { user } = useContext(AuthContext)
@@ -13,6 +13,20 @@ export default function Room() {
     const userUID = user.uid
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
+    useEffect(() => {
+        const fetchMessages = async () => {
+            try {
+                const messagesDB = await axios.get('http://192.168.1.3:3001/messages')
+                console.log(messagesDB)
+            } catch (err) {
+                console.log(err)
+
+            }
+
+        }
+        fetchMessages()
+    }, [])
+
 
     const { id } = useParams()
     const handleClick = (e) => {
