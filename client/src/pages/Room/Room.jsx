@@ -15,16 +15,12 @@ export default function Room() {
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
 
-    const listRef = useRef(null);
 
-    useEffect(() => {
-        listRef.current.scrollTop = listRef.current.scrollHeight;
-    }, [messages]);
 
     useEffect(() => {
         const fetchMessages = async (id) => {
             try {
-                const messagesDB = await axios.get(`http://192.168.1.3:3001/messages/${id}`)
+                const messagesDB = await axios.get(`http://192.168.1.108:3001/messages/${id}`)
                 console.log(messagesDB.data)
                 setMessages(messagesDB.data)
             } catch (err) {
@@ -34,7 +30,7 @@ export default function Room() {
 
         }
         fetchMessages(id)
-    }, [])
+    }, [id])
 
 
     const handleClick = (e) => {
@@ -68,7 +64,7 @@ export default function Room() {
         <div className='chat-container'>
 
             {id} room
-            <ul className='list' ref={listRef} >
+            <ul className='list'  >
                 {messages && messages.map((msg, index) => (
                     <li className={`message ${msg.userUID === user.uid ? 'my-message' : 'other-message'}`} key={index}>
                         <strong> {msg.userName} :

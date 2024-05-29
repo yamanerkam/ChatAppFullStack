@@ -13,7 +13,7 @@ const server = http.createServer(app)
 
 const io = new Server(server, {
     cors: {
-        origin: ["http://localhost:5173", "http://192.168.1.3:5173"],
+        origin: ["http://localhost:5173", "http://192.168.1.3:5173", 'http://192.168.1.108:5173'],
         methods: ["GET", "POST"],
         credentials: true,
     },
@@ -35,6 +35,14 @@ db.once('open', () => {
 
 
 
+app.get('/', async (req, res) => {
+    try {
+        res.send('working')
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+})
 app.get('/rooms', async (req, res) => {
     try {
         const rooms = await Room.find();
