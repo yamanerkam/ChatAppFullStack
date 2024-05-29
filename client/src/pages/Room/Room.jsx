@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { io } from 'socket.io-client';
 import { FaPlus } from "react-icons/fa";
 import AuthContext from '../../context/AuthContext';
-const socket = io('http://192.168.1.3:3001', { transports: ['websocket'], jsonp: false, forceNew: true, })
+const socket = io('http://192.168.1.108:3001', { transports: ['websocket'], jsonp: false, forceNew: true, })
 import axios from 'axios'
 
 export default function Room() {
@@ -30,7 +30,7 @@ export default function Room() {
 
         }
         fetchMessages(id)
-    }, [id])
+    }, [])
 
 
     const handleClick = (e) => {

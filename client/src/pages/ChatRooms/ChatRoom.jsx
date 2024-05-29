@@ -3,7 +3,7 @@ import './ChatRoom.css'
 import ChatCard from '../../components/ChatCard/ChatCard'
 import { FaPlus } from "react-icons/fa";
 import { io } from 'socket.io-client';
-const socket = io('http://192.168.1.3:3001', { transports: ['websocket'], jsonp: false, forceNew: true, })
+const socket = io('http://192.168.1.108:3001', { transports: ['websocket'], jsonp: false, forceNew: true, })
 import axios from 'axios';
 
 
