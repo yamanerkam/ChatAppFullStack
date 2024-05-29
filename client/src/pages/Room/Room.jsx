@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 import './Room.css'
 import { useParams } from "react-router-dom";
 import { io } from 'socket.io-client';
@@ -14,6 +14,13 @@ export default function Room() {
     const userUID = user.uid
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
+
+    const listRef = useRef(null);
+
+    useEffect(() => {
+        listRef.current.scrollTop = listRef.current.scrollHeight;
+    }, [messages]);
+
     useEffect(() => {
         const fetchMessages = async (id) => {
             try {
@@ -58,10 +65,10 @@ export default function Room() {
 
     return (
 
-        <div>
+        <div className='chat-container'>
 
             {id} room
-            <ul className='list'>
+            <ul className='list' ref={listRef} >
                 {messages && messages.map((msg, index) => (
                     <li className={`message ${msg.userUID === user.uid ? 'my-message' : 'other-message'}`} key={index}>
                         <strong> {msg.userName} :

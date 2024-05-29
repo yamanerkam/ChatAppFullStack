@@ -73,3 +73,39 @@
     background-color: #ef4444;
     align-self: flex-start;
 }
+
+body {
+    overflow-x: hidden;
+}
+
+.list {
+    overflow-y: auto;
+    max-height: calc(100vh - 130px);
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* ... (rest of your message styles) */
+
+.chat-container {
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+}
+
+.list {
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-bottom: 20px;
+}
+
+.list::-webkit-scrollbar {
+    display: none;
+}
+
+.messageBox {
+    flex-shrink: 0;
+}

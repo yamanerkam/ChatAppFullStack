@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import './ChatRoom.css'
 import ChatCard from '../../components/ChatCard/ChatCard'
 import { FaPlus } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
 import { io } from 'socket.io-client';
 const socket = io('http://192.168.1.3:3001', { transports: ['websocket'], jsonp: false, forceNew: true, })
 import axios from 'axios';
@@ -11,7 +10,6 @@ import axios from 'axios';
 export default function () {
     const [rooms, setRooms] = useState([])
     const [newRoomName, setNewRoomName] = useState('')
-    const navigate = useNavigate()
 
     useEffect(() => {
 
