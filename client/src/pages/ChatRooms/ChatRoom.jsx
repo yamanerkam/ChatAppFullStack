@@ -37,7 +37,20 @@ export default function () {
         setNewRoomName('')
         console.log(rooms)
     }
-
+    /*
+        useEffect(() => {
+            socket.on('createRoom', receiveRooms)
+            return () => {
+                socket.off('createRoom', receiveRooms)
+            }
+        }, [rooms])
+    
+        const receiveRooms = (data) => {
+            setRooms(state => [data, ...state])
+            console.log(rooms)
+    
+        }
+    */
     return (
         <div className='rooms'>
 
