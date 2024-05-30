@@ -26,7 +26,7 @@ export default function () {
 
     useEffect(() => {
         socket.on('newRoom', (newRoom) => {
-            setRooms((state) => [newRoom, ...state]);
+            setRooms((state) => [...state, newRoom]);
         });
 
         return () => {
