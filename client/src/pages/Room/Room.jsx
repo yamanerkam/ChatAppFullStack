@@ -36,7 +36,7 @@ export default function Room() {
     const handleClick = (e) => {
 
         e.preventDefault()
-        const mes = { msg: message, from: socket.id, userName, userUID }
+        const mes = { msg: message, userName, userUID }
         socket.emit('sendMessage', mes, id)
         setMessages(state => [mes, ...state])
         console.log(messages)

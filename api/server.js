@@ -78,8 +78,6 @@ io.on('connection', (socket) => {
     })
 
 
-
-
     socket.on('createRoom', async (room) => {
         const name = room.name
         console.log(room)
