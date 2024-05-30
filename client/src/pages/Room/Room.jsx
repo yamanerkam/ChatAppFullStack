@@ -38,7 +38,7 @@ export default function Room() {
         e.preventDefault()
         const mes = { msg: message, userName, userUID }
         socket.emit('sendMessage', mes, id)
-        setMessages(state => [mes, ...state])
+        setMessages(state => [...state, mes])
         console.log(messages)
         setMessage('')
 
@@ -54,7 +54,7 @@ export default function Room() {
     }, [id])
 
     const receiveMessage = (data) => {
-        setMessages(state => [data, ...state])
+        setMessages(state => [...state, data]);
         console.log(messages)
 
     }
