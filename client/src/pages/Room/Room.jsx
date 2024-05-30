@@ -22,8 +22,7 @@ export default function Room() {
             try {
                 const messagesDB = await axios.get(`http://192.168.1.108:3001/messages/${id}`)
                 console.log(messagesDB.data)
-                const sortedMessages = messagesDB.data.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
-                setMessages(sortedMessages);
+                setMessages(messagesDB.data);
             } catch (err) {
                 console.log(err)
 
