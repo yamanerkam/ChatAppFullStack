@@ -53,6 +53,17 @@ app.get('/rooms', async (req, res) => {
     }
 })
 
+app.get('/rooms/:id', async (req, res) => {
+    const id = req.params.id
+    try {
+        const room = await Room.find({ _id: id })
+        res.json(room)
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+
+    }
+})
+
 app.get('/messages/:id', async (req, res) => {
     const id = req.params.id
 
