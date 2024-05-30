@@ -22,7 +22,8 @@ export default function Room() {
             try {
                 const messagesDB = await axios.get(`http://192.168.1.108:3001/messages/${id}`)
                 console.log(messagesDB.data)
-                setMessages(messagesDB.data)
+                const sortedMessages = messagesDB.data.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+                setMessages(sortedMessages);
             } catch (err) {
                 console.log(err)
 
@@ -36,7 +37,7 @@ export default function Room() {
     const handleClick = (e) => {
 
         e.preventDefault()
-        const mes = { msg: message, from: socket.id, userName, userUID }
+        const mes = { msg: message, from: socket.id, userName, userUID, timestamp: new Date().toISOString() }
         socket.emit('sendMessage', mes, id)
         setMessages(state => [mes, ...state])
         console.log(messages)
