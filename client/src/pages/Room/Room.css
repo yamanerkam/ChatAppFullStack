@@ -92,3 +92,13 @@ body {
 .list::-webkit-scrollbar {
     display: none;
 }
+
+.chat-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
