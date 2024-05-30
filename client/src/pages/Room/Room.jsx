@@ -14,15 +14,21 @@ export default function Room() {
     const userUID = user.uid
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
+    const [room, setRoom] = useState('')
 
 
 
     useEffect(() => {
         const fetchMessages = async (id) => {
             try {
-                const messagesDB = await axios.get(`http://192.168.1.108:3001/messages/${id}`)
+                const [messagesDB, roomData] = await Promise.all([
+                    axios.get(`http://192.168.1.108:3001/messages/${id}`),
+                    axios.get(`http://192.168.1.108:3001/rooms/${id}`)
+                ])
                 console.log(messagesDB.data)
+                console.log(roomData.data[0])
                 setMessages(messagesDB.data);
+                setRoom(roomData.data[0])
             } catch (err) {
                 console.log(err)
 
@@ -63,7 +69,7 @@ export default function Room() {
 
         <div className='chat-container'>
 
-            {id} room
+            {room && (<h1>Room name: {room.name}</h1>)}
             <ul className='list'  >
                 {messages && messages.map((msg, index) => (
                     <li className={`message ${msg.userUID === user.uid ? 'my-message' : 'other-message'}`} key={index}>
