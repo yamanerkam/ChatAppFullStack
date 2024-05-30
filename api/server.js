@@ -100,7 +100,7 @@ io.on('connection', (socket) => {
         const message = new Message({ msg, room, userUID, userName });
         await message.save();
         console.log(body, room)
-        socket.to(room).emit('sendMessage', body)
+        socket.to(room).emit('sendMessage', message)
     })
 
     socket.on('disconnect', () => {
