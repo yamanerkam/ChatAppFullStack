@@ -42,7 +42,6 @@ export default function () {
             name: newRoomName
         }
         socket.emit('createRoom', newRoom)
-        setRooms(state => [newRoom, ...state])
         setNewRoomName('')
         console.log(rooms)
     }

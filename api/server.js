@@ -83,7 +83,6 @@ io.on('connection', (socket) => {
         console.log(room)
         const roomSaved = new Room({ name })
         await roomSaved.save()
-
         io.emit('newRoom', roomSaved);
 
     })
