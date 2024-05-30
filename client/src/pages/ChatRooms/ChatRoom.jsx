@@ -74,8 +74,7 @@ export default function () {
 
 
             <div className='cards'>
-                <ChatCard ID={'123'} name={'kam'}></ChatCard>
-                <ChatCard ID={'456'} name={'parker'}></ChatCard>
+
                 {rooms && rooms.map((room, index) => (
                     <ChatCard key={index} name={room.name} ID={room._id}></ChatCard>
                 ))}
