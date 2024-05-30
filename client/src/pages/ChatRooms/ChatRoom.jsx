@@ -12,7 +12,6 @@ export default function () {
     const [newRoomName, setNewRoomName] = useState('')
 
     useEffect(() => {
-
         const fetchRooms = async () => {
             try {
                 const response = await axios.get('http://192.168.1.108:3001/rooms')
@@ -24,6 +23,16 @@ export default function () {
         }
         fetchRooms()
     }, [])
+
+    useEffect(() => {
+        socket.on('newRoom', (newRoom) => {
+            setRooms((state) => [newRoom, ...state]);
+        });
+
+        return () => {
+            socket.off('newRoom');
+        };
+    }, []);
 
 
     function handleClick(e) {
@@ -37,20 +46,13 @@ export default function () {
         setNewRoomName('')
         console.log(rooms)
     }
-    /*
-        useEffect(() => {
-            socket.on('createRoom', receiveRooms)
-            return () => {
-                socket.off('createRoom', receiveRooms)
-            }
-        }, [rooms])
-    
-        const receiveRooms = (data) => {
-            setRooms(state => [data, ...state])
-            console.log(rooms)
-    
-        }
-    */
+
+
+
+
+
+
+
     return (
         <div className='rooms'>
 

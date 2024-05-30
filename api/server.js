@@ -77,11 +77,17 @@ io.on('connection', (socket) => {
         console.log(`User ${socket.id} connected to room ${room}!`)
     })
 
+
+
+
     socket.on('createRoom', async (room) => {
         const name = room.name
-        const ID = room.ID
-        const roomSaved = new Room({ name, ID })
+        console.log(room)
+        const roomSaved = new Room({ name })
         await roomSaved.save()
+
+        io.emit('newRoom', roomSaved);
+
     })
 
     socket.on('leaveRoom', (room) => {

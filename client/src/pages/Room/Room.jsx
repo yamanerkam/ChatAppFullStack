@@ -25,9 +25,7 @@ export default function Room() {
                 setMessages(messagesDB.data)
             } catch (err) {
                 console.log(err)
-
             }
-
         }
         fetchMessages(id)
     }, [])
@@ -47,11 +45,12 @@ export default function Room() {
     useEffect(() => {
         socket.emit('joinRoom', id);
         socket.on('sendMessage', receiveMessage)
+
         return () => {
             socket.emit('leaveRoom', id);
             socket.off('sendMessage', receiveMessage)
         }
-    }, [id])
+    }, [])
 
     const receiveMessage = (data) => {
         setMessages(state => [data, ...state])
